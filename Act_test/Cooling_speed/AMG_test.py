@@ -16,8 +16,8 @@ sensor = Adafruit_AMG88xx(address=0x69, busnum=2)
 Act = 'P8_13'
 Act_dirA = 'P8_14'
 Act_dirB = 'P8_15'
+Fan = 'P8_9'
 
-Fan = 'P8_11'
 #Fann = 'P8_15'
 
 GPIO.setup(Act_dirA, GPIO.OUT)
@@ -25,7 +25,7 @@ GPIO.setup(Act_dirB, GPIO.OUT)
 GPIO.setup(Fan, GPIO.OUT)
 #GPIO.setup(Act, GPIO.OUT)
 
-PWM.start(Act, 100, 100)
+PWM.start(Act, 0, 1000)
 
 GPIO.output(Act_dirA, GPIO.HIGH)
 #GPIO.output(Act, GPIO.LOW)
@@ -62,7 +62,7 @@ while a!=4:
             tdata.write("%.2f,%d,%d,%.1f\n" % (distance, temp, R, count * 0.1))
             time.sleep(0.1)
         PWM.set_duty_cycle(Act, 0)
-        for count in range(b,b+11):
+        for count in range(b,b+1):
             distance = myEncoder.position * 0.02
             temp = max(sensor.readPixels())
 #            Vr=ADC.read(analogPin)
@@ -79,6 +79,7 @@ while a!=4:
         for count in range(1,b):
             distance = myEncoder.position * 0.02
             temp = max(sensor.readPixels())
+            GPIO.output(Fan, GPIO.LOW)
 #            Vr=ADC.read(analogPin)
 #            R=10000*Vr/(1.8-Vr)
             print("%.2f,%d,%d,%.1f\n" % (distance, temp, R, count * 0.1))
@@ -108,6 +109,7 @@ while a!=4:
                 time.sleep(0.1)
             PWM.set_duty_cycle(Act, 0)
             while temp > ct:
+                GPIO.output(Fan, GPIO.LOW)
                 distance = -myEncoder.position * 0.02
                 temp = max(sensor.readPixels())
 #                Vr = ADC.read(analogPin)
@@ -121,8 +123,9 @@ while a!=4:
     elif a==5:
         myEncoder.zero()
     elif a==6:
-        global pwm
         pwm = int(input('PWM value(1~100) : '))
+    elif a==7:
+        print(pwm)
 
 
 PWM.stop("P8_13")
