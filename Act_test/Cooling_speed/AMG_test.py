@@ -38,7 +38,7 @@ f = raw_input('file name : ')
 filename = f + '.txt'
 tdata = open(filename, 'a+')
 
-tdata.write("Test start,start,start,start\n")
+tdata.write("Test start,start,start,start,start\n")
 a=0
 R = 0
 global pwm
@@ -91,7 +91,7 @@ while a!=4:
         ht = int(input('High temp : '))
         ct = int(input('Low temp : '))
         cy = int(input('cycle number : '))
-        tdata.write("Cal_Disp(mm),Temperature('c),Resistance(Ohm),Time(s) \n")
+        tdata.write("Cal_Disp(mm),Temperature('c),Resistance(Ohm),Time(s),Cycle(n) \n")
         distance = 0.00
         count = 0.00
         temp = 0.00
