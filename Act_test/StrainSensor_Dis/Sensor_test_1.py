@@ -81,7 +81,7 @@ while a!=4:
             temp = max(sensor.readPixels())
             GPIO.output(Fan, GPIO.LOW)
             Vr=ADC.read(analogPin)
-            R=9900.00*Vr/(1.8-Vr)
+            R=99.00*Vr/(1.8-Vr)
             print("%.2f,%d,%d,%.1f\n" % (distance, temp, R, count * 0.1))
             tdata.write("%.2f,%d,%d,%.1f\n" % (distance, temp, R, count * 0.1))
             time.sleep(0.1)
@@ -102,7 +102,7 @@ while a!=4:
                 distance = -myEncoder.position * 0.02
                 temp = max(sensor.readPixels())
                 Vr = ADC.read(analogPin)
-                R = 9900.00 * Vr / (1.80 - Vr)
+                R = 99.00 * Vr / (1.80 - Vr)
                 count = count+1
                 print("%.2f,%.2f,%.2f,%.1f,%d" % (distance, temp, R, count * 1, cycle))
                 tdata.write("%.2f,%.2f,%.2f,%.1f,%d\n" % (distance, temp, R, count * 1, cycle))
@@ -113,7 +113,7 @@ while a!=4:
                 distance = -myEncoder.position * 0.02
                 temp = max(sensor.readPixels())
                 Vr = ADC.read(analogPin)
-                R = 9900.00* Vr / (1.8 - Vr)
+                R = 99.00* Vr / (1.8 - Vr)
                 count = count+1
                 print("%.2f,%.2f,%.2f,%.1f,%d" % (distance, temp, R, count * 1, cycle))
                 tdata.write("%.2f,%.2f,%.2f,%.1f,%d\n" % (distance, temp, R, count * 1, cycle))
